@@ -123,20 +123,7 @@
   .layer p b{color:var(--text);font-weight:600}
 
   /* ---------- Measurement ---------- */
-  .measure{background:linear-gradient(180deg,transparent,rgba(130,238,99,.05))}
   .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  .mlist{list-style:none;margin-top:30px}
-  .mlist li{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);font-size:16px}
-  .mlist li:last-child{border-bottom:none}
-  .mlist .chk{flex-shrink:0;width:22px;height:22px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(130,238,99,.5);display:flex;align-items:center;justify-content:center;margin-top:2px}
-  .mlist .chk svg{width:12px;height:12px;color:#0f2b0a}
-  .mlist b{font-weight:600}
-  .mcards{max-width:900px;margin:44px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .mcard{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px 26px;display:flex;gap:14px;align-items:flex-start;font-size:16px;transition:.35s ease}
-  .mcard:hover{border-color:var(--accent);box-shadow:0 14px 36px rgba(130,238,99,.28);transform:translateY(-4px)}
-  .mcard .chk{flex-shrink:0;width:22px;height:22px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(130,238,99,.5);display:flex;align-items:center;justify-content:center;margin-top:2px}
-  .mcard .chk svg{width:12px;height:12px;color:#0f2b0a}
-  .mcard b{font-weight:600}
 
   /* ---------- Close ---------- */
   .close{text-align:center}
@@ -176,7 +163,6 @@
     .arrow{display:none}
     .mgrid,.whynow .mgrid{gap:40px}
     .drow{grid-template-columns:1fr 1fr}
-    .mcards{grid-template-columns:1fr;max-width:460px}
     .leadstat .big,.leadstat .big em{font-size:66px}
     .joke p{font-size:17px}
   }
@@ -344,24 +330,6 @@
       <div class="joke">
         <span class="jlabel">Between us</span>
         <p>And let's be honest, wrangling a big group is hard. Six or fourteen people can take two or three weeks just to sort out their own schedules before anyone hits book. The follow-up keeps River Ranch top of mind the whole time.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MEASUREMENT -->
-  <section class="measure">
-    <div class="wrap">
-      <div class="center">
-        <span class="eyebrow"><span class="dot"></span>Proof it moved</span>
-        <div class="bar"></div>
-        <h2>If we can't <em>track</em> it, we don't count it.</h2>
-        <p>The whole point is to see whether paid weekday traffic moves the needle. Every dollar in ties to a result out, all in one place.</p>
-      </div>
-      <div class="mcards">
-        <div class="mcard"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span><span><b>Weekday bookings</b> for lodging and floats, split by tier</span></div>
-        <div class="mcard"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span><span><b>Cost per booking</b> and return on ad spend, per campaign</span></div>
-        <div class="mcard"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span><span><b>Ad to page to booking</b> path, so we know which tier pulls</span></div>
-        <div class="mcard"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span><span><b>Follow-up recovery</b>, the bookings the SMS and email won back</span></div>
       </div>
     </div>
   </section>
