@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekday Escape — The System | Motion Marketing × River Ranch Resort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#f1f5e8;
+    --card:#f1f5e8;
+    --accent:#82ee63;
+    --text:#1a1a1a;
+    --muted:#6b7280;
+    --border:#dfe6d1;
+    --btn:linear-gradient(145deg,#2c2c2e 0%,#161617 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--background);color:var(--text);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  em{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;color:var(--accent)}
+  h1,h2,h3{font-weight:700;letter-spacing:-0.025em;line-height:1.1}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+  section{padding:128px 0}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);
+    padding:8px 16px;border:1px solid var(--border);border-radius:9999px;
+    background:rgba(255,255,255,.4);
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:9999px;background:var(--accent);box-shadow:0 0 8px rgba(130,238,99,.6)}
+  .bar{width:28px;height:3px;border-radius:9999px;background:var(--accent);box-shadow:0 0 8px rgba(130,238,99,.6)}
+  .btn{
+    display:inline-block;text-decoration:none;font-size:15px;font-weight:600;color:#fff;
+    background:var(--btn);padding:16px 30px;border-radius:9999px;transition:.35s ease;
+  }
+  .btn:hover{box-shadow:0 10px 26px rgba(22,22,23,.28);transform:translateY(-2px)}
+
+  /* ---------- Nav ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(241,245,232,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .nav-in{max-width:1280px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:16px}
+  .brand .mark{width:11px;height:11px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(130,238,99,.7)}
+  .brand span{color:var(--muted);font-weight:500}
+  .nav-cta{font-size:14px;font-weight:600;color:#fff;background:var(--btn);padding:10px 20px;border-radius:9999px;text-decoration:none;transition:.35s ease}
+  .nav-cta:hover{box-shadow:0 8px 20px rgba(22,22,23,.25)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:120px 0 96px;text-align:center}
+  .hero h1{font-size:clamp(46px,7.5vw,86px);max-width:16ch;margin:26px auto 0}
+  .hero .sub{margin:30px auto 0;max-width:60ch;font-size:19px;color:var(--muted)}
+  .hero .sub b{color:var(--text);font-weight:600}
+  .hero .actions{margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .ghost{display:inline-block;text-decoration:none;font-size:15px;font-weight:600;color:var(--text);padding:16px 28px;border:1px solid var(--border);border-radius:9999px;background:rgba(255,255,255,.4);transition:.35s ease}
+  .ghost:hover{border-color:var(--accent);box-shadow:0 8px 22px rgba(130,238,99,.2)}
+
+  /* ---------- Opportunity ---------- */
+  .lead{max-width:60ch}
+  .lead .eyebrow{margin-bottom:24px}
+  .lead h2{font-size:clamp(34px,5vw,56px);margin-bottom:22px}
+  .lead p{font-size:18px;color:var(--muted)}
+  .lead p b{color:var(--text);font-weight:600}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+  .gauge{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:34px;transition:.35s ease;display:flex;flex-direction:column}
+  .gauge:hover{border-color:var(--accent);box-shadow:0 14px 36px rgba(130,238,99,.28);transform:translateY(-4px)}
+  .gauge .k{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .gauge .big{font-size:44px;font-weight:700;letter-spacing:-.03em;margin:14px 0 6px}
+  .gauge .note{font-size:15px;color:var(--muted)}
+  .track{height:10px;border-radius:9999px;background:#e2e8d6;margin:22px 0 0;margin-top:auto;overflow:hidden}
+  .track i{display:block;height:100%;border-radius:9999px}
+  .fill-full{width:88%;background:#c3cbb6}
+  .fill-open{width:34%;background:var(--accent);box-shadow:0 0 12px rgba(130,238,99,.55)}
+  .gauge.hot .big span{color:var(--accent)}
+
+  /* ---------- Offer ---------- */
+  .offer{background:linear-gradient(180deg,rgba(130,238,99,.05),transparent 40%)}
+  .center{text-align:center;max-width:60ch;margin:0 auto}
+  .center .bar{margin:22px auto}
+  .center h2{font-size:clamp(34px,5vw,56px)}
+  .center p{font-size:18px;color:var(--muted);margin-top:20px}
+  .rate{display:inline-flex;align-items:baseline;gap:12px;margin-top:34px;padding:14px 26px;border:1px solid var(--border);border-radius:9999px;background:rgba(255,255,255,.5)}
+  .rate .n{font-size:32px;font-weight:700;letter-spacing:-.03em}
+  .rate .n span{color:var(--accent)}
+  .rate .l{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+  .tier{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:36px 32px;display:flex;flex-direction:column;transition:.35s ease}
+  .tier:hover{border-color:var(--accent);box-shadow:0 14px 36px rgba(130,238,99,.28);transform:translateY(-4px)}
+  .tier .cap{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .tier h3{font-size:30px;margin-top:14px}
+  .tier .bar{margin:16px 0 22px}
+  .tier .desc{font-size:15px;color:var(--muted);min-height:66px}
+  .tier .amt{font-size:52px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-top:8px}
+  .tier .amt sup{font-size:24px;top:-1.05em;font-weight:600}
+  .tier .meta{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+  .save{font-size:13px;font-weight:700;color:var(--text);background:var(--accent);padding:5px 12px;border-radius:9999px}
+  .incl{font-size:13px;color:var(--muted)}
+  .discount-note{max-width:66ch;margin:34px auto 0;text-align:center;font-size:15px;color:var(--muted);line-height:1.7}
+  .discount-note b{color:var(--text);font-weight:600}
+  .tier .btn{margin-top:28px;text-align:center}
+
+  /* ---------- System / funnel ---------- */
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px;position:relative}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:30px 26px;transition:.35s ease;position:relative}
+  .step:hover{border-color:var(--accent);box-shadow:0 14px 36px rgba(130,238,99,.28);transform:translateY(-4px)}
+  .step .idx{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9999px;border:1px solid var(--border);font-weight:700;font-size:15px;background:rgba(255,255,255,.5)}
+  .step:hover .idx{border-color:var(--accent);color:var(--text);box-shadow:0 0 12px rgba(130,238,99,.4)}
+  .step h3{font-size:20px;margin:18px 0 6px}
+  .step .bar{margin:0 0 14px}
+  .step p{font-size:14.5px;color:var(--muted)}
+  .arrow{position:absolute;top:50px;right:-14px;width:24px;height:24px;z-index:2;color:var(--accent);opacity:.85}
+  .flow .step:last-child .arrow{display:none}
+
+  .layer{margin-top:24px;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:30px 34px;display:flex;align-items:center;gap:24px;transition:.35s ease;flex-wrap:wrap}
+  .layer:hover{border-color:var(--accent);box-shadow:0 14px 36px rgba(130,238,99,.28);transform:translateY(-4px)}
+  .layer .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text);background:var(--accent);padding:7px 14px;border-radius:9999px;white-space:nowrap}
+  .layer p{font-size:15px;color:var(--muted);flex:1;min-width:260px}
+  .layer p b{color:var(--text);font-weight:600}
+
+  /* ---------- Measurement ---------- */
+  .measure{background:linear-gradient(180deg,transparent,rgba(130,238,99,.05))}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .mlist{list-style:none;margin-top:30px}
+  .mlist li{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);font-size:16px}
+  .mlist li:last-child{border-bottom:none}
+  .mlist .chk{flex-shrink:0;width:22px;height:22px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(130,238,99,.5);display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .mlist .chk svg{width:12px;height:12px;color:#0f2b0a}
+  .mlist b{font-weight:600}
+  .mcards{max-width:900px;margin:44px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .mcard{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px 26px;display:flex;gap:14px;align-items:flex-start;font-size:16px;transition:.35s ease}
+  .mcard:hover{border-color:var(--accent);box-shadow:0 14px 36px rgba(130,238,99,.28);transform:translateY(-4px)}
+  .mcard .chk{flex-shrink:0;width:22px;height:22px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(130,238,99,.5);display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .mcard .chk svg{width:12px;height:12px;color:#0f2b0a}
+  .mcard b{font-weight:600}
+
+  /* ---------- Close ---------- */
+  .close{text-align:center}
+  .close h2{font-size:clamp(36px,5.5vw,64px);max-width:18ch;margin:24px auto 0}
+  .close p{font-size:18px;color:var(--muted);max-width:56ch;margin:24px auto 0}
+  .close .actions{margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer{border-top:1px solid var(--border);padding:40px 0}
+  .foot-in{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+  .foot-in a{color:var(--text);text-decoration:none;border-bottom:2px solid var(--accent)}
+
+  /* ---------- Why now / lead time ---------- */
+  .whynow .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .leadstat{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:40px;text-align:center;transition:.35s ease}
+  .leadstat:hover{border-color:var(--accent);box-shadow:0 14px 36px rgba(130,238,99,.28)}
+  .leadstat .big{font-size:88px;font-weight:700;letter-spacing:-.04em;line-height:1}
+  .leadstat .big em{font-size:88px}
+  .leadstat .k{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .timeline{margin-top:34px;position:relative;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--accent),#e2e8d6)}
+  .tnode{position:relative;padding:0 0 26px 0}
+  .tnode:last-child{padding-bottom:0}
+  .tnode::before{content:"";position:absolute;left:-26px;top:4px;width:14px;height:14px;border-radius:9999px;background:var(--accent);box-shadow:0 0 10px rgba(130,238,99,.6);border:3px solid var(--background)}
+  .tnode .when{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .tnode .what{font-size:16px;margin-top:3px}
+  .tnode .what b{font-weight:600}
+
+  /* ---------- Stay warm callout ---------- */
+  .joke{max-width:760px;margin:44px auto 0;background:rgba(130,238,99,.1);border:1px solid rgba(130,238,99,.4);border-radius:24px;padding:32px 36px;text-align:center}
+  .joke .jlabel{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .joke p{font-size:19px;color:var(--text);line-height:1.6}
+
+  @media (max-width:900px){
+    section{padding:88px 0}
+    .split,.grid3,.flow,.mgrid,.whynow .mgrid{grid-template-columns:1fr}
+    .grid3{max-width:460px;margin:56px auto 0}
+    .arrow{display:none}
+    .mgrid,.whynow .mgrid{gap:40px}
+    .drow{grid-template-columns:1fr 1fr}
+    .mcards{grid-template-columns:1fr;max-width:460px}
+    .leadstat .big,.leadstat .big em{font-size:66px}
+    .joke p{font-size:17px}
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-in">
+      <div class="brand"><span class="mark"></span>Motion Marketing <span>× River Ranch Resort</span></div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span>Off-season pilot · Proposal</span>
+      <h1>Your weekends are full. Let's go fill the <em>weekdays</em>.</h1>
+      <p class="sub">An off-season test: can paid traffic move Monday-through-Thursday bookings for lodging and floats, and can we track all of it. <b>Targeted Meta ads, tier-specific landing pages, automated SMS and email follow-up, and full attribution.</b></p>
+    </div>
+  </header>
+
+  <!-- OPPORTUNITY -->
+  <section>
+    <div class="wrap">
+      <div class="lead">
+        <span class="eyebrow"><span class="dot"></span>The opportunity</span>
+        <h2>Weekends fill themselves. <em>Weekdays</em> are where the room to grow is.</h2>
+        <p>You are already near capacity on Saturdays, so there is little needle left to move. Monday through Thursday is idle inventory, on the water and in the cabins. <b>Fill even a fraction of it and the gain compounds,</b> because each booking sells the stay and the float together.</p>
+      </div>
+
+      <div class="split">
+        <div class="gauge">
+          <div class="k">Fri – Sun</div>
+          <div class="big">Near full</div>
+          <div class="note">Little headroom. Ads here mostly pay to capture demand you already have.</div>
+          <div class="track"><i class="fill-full"></i></div>
+        </div>
+        <div class="gauge hot">
+          <div class="k">Mon – Thurs</div>
+          <div class="big"><span>Wide open</span></div>
+          <div class="note">Idle lodging and float capacity. Every booking here is net-new revenue.</div>
+          <div class="track"><i class="fill-open"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER -->
+  <section class="offer" id="offer">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow"><span class="dot"></span>The hook</span>
+        <div class="bar"></div>
+        <h2>The Weekday <em>Escape</em></h2>
+        <p>One flat per-person rate, float and stay together, in three group sizes. The bigger the group, the lower the cost per head: bring more people, pay less each.</p>
+        <div class="rate"><span class="n"><span>$90</span></span><span class="l">per person · float + stay</span></div>
+      </div>
+
+      <div class="grid3">
+        <article class="tier">
+          <span class="cap">2 Guests</span>
+          <h3>The <em>Pod</em></h3>
+          <div class="bar"></div>
+          <p class="desc">A riverside glamping pod for two, plus your pick of a canoe or kayak on the Elk River.</p>
+          <div class="amt"><sup>$</sup>180</div>
+          <div class="meta"><span class="save">$25 off total</span><span class="incl">standard weekday rates · + tax</span></div>
+        </article>
+        <article class="tier">
+          <span class="cap">6 Guests</span>
+          <h3>The <em>Chalet</em></h3>
+          <div class="bar"></div>
+          <p class="desc">The Sycamore Chalet for the crew, plus any craft we run, rafts to kayaks to tubes.</p>
+          <div class="amt"><sup>$</sup>540</div>
+          <div class="meta"><span class="save">$30 off total</span><span class="incl">standard weekday rates · + tax</span></div>
+        </article>
+        <article class="tier">
+          <span class="cap">14 Guests</span>
+          <h3>The <em>Lakewood</em></h3>
+          <div class="bar"></div>
+          <p class="desc">The whole Lakewood House, plus any craft the group wants for the float.</p>
+          <div class="amt"><sup>$</sup>1,260</div>
+          <div class="meta"><span class="save">$50 off total</span><span class="incl">standard weekday rates · + tax</span></div>
+        </article>
+      </div>
+
+      <p class="discount-note">Each figure is the full discount off your <b>standard weekday rates</b>, applied only to nights and floats that would otherwise sit empty.</p>
+    </div>
+  </section>
+
+  <!-- SYSTEM -->
+  <section id="system">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow"><span class="dot"></span>The system</span>
+        <div class="bar"></div>
+        <h2>One path, from the <em>scroll</em> to the booking</h2>
+        <p>Each tier gets its own ad set and landing page, so the promise never changes from the ad they tap to the button they book on.</p>
+      </div>
+
+      <div class="flow">
+        <div class="step">
+          <span class="idx">1</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <h3>Targeted Meta ads</h3>
+          <div class="bar"></div>
+          <p>Separate ad sets for couples, friend groups, and big-group planners. Geo and interest targeting across your drive markets, weekday dates only.</p>
+        </div>
+        <div class="step">
+          <span class="idx">2</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <h3>Tier landing pages</h3>
+          <div class="bar"></div>
+          <p>One page per bundle that echoes the ad, shows what is included, and points to a single clear button.</p>
+        </div>
+        <div class="step">
+          <span class="idx">3</span>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <h3>Book or capture</h3>
+          <div class="bar"></div>
+          <p>Ready guests book on the spot. The rest leave a name and number, so no warm lead is lost to a closed tab.</p>
+        </div>
+        <div class="step">
+          <span class="idx">4</span>
+          <h3>Automated follow-up</h3>
+          <div class="bar"></div>
+          <p>SMS and email sequences that answer questions and nudge undecided guests back to book, with no work at the front desk.</p>
+        </div>
+      </div>
+
+      <div class="layer">
+        <span class="tag">Why it converts</span>
+        <p>Marketers call this <b>message match</b>, and it is where most local campaigns leak money. Tap an ad for the 14-person house, land on a page about the 14-person house, not a homepage you have to dig through. Every extra click and flicker of doubt bleeds off ready buyers. <b>We keep the promise identical from the ad to the booking button.</b> Most operators point every ad at one generic homepage and never see the bookings they lose. We build the whole path on purpose.</p>
+      </div>
+
+      <div class="layer">
+        <span class="tag">Tracking layer</span>
+        <p>Full attribution under every step: <b>Meta Pixel and Conversions API, UTM tags on every link, and booking-level tracking</b> that ties each reservation back to the ad and tier that produced it. Nothing runs blind.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY NOW -->
+  <section class="whynow">
+    <div class="wrap">
+      <div class="mgrid">
+        <div>
+          <span class="eyebrow"><span class="dot"></span>Why start in the slow months</span>
+          <h2 style="font-size:clamp(32px,4.5vw,50px);margin-top:22px">Guests book about <em>two months</em> out. The pipeline has to start now.</h2>
+          <p style="font-size:18px;color:var(--muted);margin-top:20px">The average guest plans a river trip about two months ahead, and almost nobody books the second they see an ad. Wait for the season to heat up and the deciding has already happened without us. So we run through the off-season, capture their info on the way in, and <b>keep us warm with automated email and SMS</b> until they book.</p>
+          <p style="font-size:18px;color:var(--muted);margin-top:16px">The slow stretch is not downtime. It is the window where the busy weeks get won.</p>
+        </div>
+
+        <div class="leadstat">
+          <div class="big"><em>~2</em></div>
+          <div class="k">Months average booking lead time</div>
+          <div class="timeline">
+            <div class="tnode"><div class="when">Off-season · now</div><div class="what">Ads run and <b>leads get captured</b> while competition is quiet and clicks are cheap.</div></div>
+            <div class="tnode"><div class="when">The weeks after</div><div class="what">Automated <b>SMS and email keep the offer warm</b>, answering questions and nudging planners.</div></div>
+            <div class="tnode"><div class="when">~2 months later</div><div class="what">They <b>book the weekday trip</b>, right when they were always going to start planning.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="joke">
+        <span class="jlabel">Between us</span>
+        <p>And let's be honest, wrangling a big group is hard. Six or fourteen people can take two or three weeks just to sort out their own schedules before anyone hits book. The follow-up keeps River Ranch top of mind the whole time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEASUREMENT -->
+  <section class="measure">
+    <div class="wrap">
+      <div class="center">
+        <span class="eyebrow"><span class="dot"></span>Proof it moved</span>
+        <div class="bar"></div>
+        <h2>If we can't <em>track</em> it, we don't count it.</h2>
+        <p>The whole point is to see whether paid weekday traffic moves the needle. Every dollar in ties to a result out, all in one place.</p>
+      </div>
+      <div class="mcards">
+        <div class="mcard"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span><span><b>Weekday bookings</b> for lodging and floats, split by tier</span></div>
+        <div class="mcard"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span><span><b>Cost per booking</b> and return on ad spend, per campaign</span></div>
+        <div class="mcard"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span><span><b>Ad to page to booking</b> path, so we know which tier pulls</span></div>
+        <div class="mcard"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span><span><b>Follow-up recovery</b>, the bookings the SMS and email won back</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span>The ask</span>
+      <h2>Run it through the <em>off-season</em> and let the numbers decide.</h2>
+      <p>A contained test on your slowest days: can paid traffic grow weekday lodging and floats, and can we trace every booking to the dollar that made it. Low risk, real numbers, a clear read on whether to scale.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-in">
+      <div class="brand" style="font-size:15px"><span class="mark"></span>Motion Marketing</div>
+      <div>Prepared for <a href="https://riverranchresort.com">River Ranch Resort</a> · Elk River, Noel MO</div>
+    </div>
+  </footer>
+
+</body>
+</html>
